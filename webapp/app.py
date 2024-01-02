@@ -1,9 +1,13 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify
 import mysql.connector
 
+load_dotenv('./webapp/project.env')
+
 app = Flask(__name__)
 
-conn = mysql.connector.connect(host='localhost', user = 'root', passwd = 'Tikheatharva#22', db = 'nbs')
+conn = mysql.connector.connect(host='localhost', user = 'root', passwd = os.getenv('PASS'), db = 'nbs')
 curs = conn.cursor(buffered=True)
 
 
