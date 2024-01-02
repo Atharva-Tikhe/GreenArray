@@ -1,0 +1,30 @@
+
+body{
+    margin: 0.25em; 
+}
+
+#input-grp {
+    display: grid;
+    /* align-items: center;
+    justify-content: center;
+    padding-top: 5%;
+    align-content: space-evenly;
+    gap: 5%; */
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10% 10%;
+    border: 2px solid black;
+}
+input{
+    grid-column: 1/3;
+}
+button{
+    grid-column: 3/3;
+}
+#result > h3 {
+    display: none;
+    padding: 10px;
+}
+.tabulate {
+    margin: 10px 0;
+}
