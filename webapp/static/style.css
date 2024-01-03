@@ -21,7 +21,7 @@ input{
 button{
     grid-column: 3/3;
 }
-#result > h3 {
+#result > h3, #download-csv {
     display: none;
     padding: 10px;
 }
