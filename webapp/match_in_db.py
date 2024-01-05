@@ -95,6 +95,10 @@ class MatchWithDb:
         engine = create_engine(f"mysql+mysqlconnector://root:{os.getenv('PASS')}@localhost/nbs")
         result.to_sql('variants', engine, 'nbs', if_exists='replace')
 
+        self.get_confirmation()
+
+    def get_confirmation(self):
+        return True
 
 
 # Example of object definition -
