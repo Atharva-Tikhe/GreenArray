@@ -28,6 +28,21 @@
               Locus
             </label>
         </div>
+        <div id="file-form">            
+            <form action="/fileInput" method='post' enctype='multipart/form-data'>
+                <label for="formFile" class="form-label">Upload file (*.tsv)</label>
+                <input class="form-control" type="file" id="formFile" name="file">
+                <div class="form-check GenderM">
+                    <input type="radio" class="form-check-input" name="gender" id="GenderM" value="M">
+                    <label for="GenderM">Male</label>
+                </div>
+                <div class="form-check GenderF">
+                    <input type="radio" class="form-check-input" name="gender" id="GenderF" value="F">
+                    <label for="GenderF">Female</label>
+                </div>
+                <button class="btn btn-primary submit-btn" type="submit" value="submit">Submit</button>
+            </form>             
+        </div>
     </div>
 
     <!-- Results container -->

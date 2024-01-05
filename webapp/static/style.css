@@ -28,3 +28,25 @@ button{
 .tabulate {
     margin: 10px 0;
 }
+
+#file-form {
+    grid-column: 1/4;
+    grid-row: 4;
+    
+}
+form {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 5;
+}
+.submit-btn {
+    /* grid-column: 2/3; */
+    grid-row: 2;
+}
+.GenderM {
+    grid-column: 1;
+}
+.GenderF {
+    grid-column: 2;
+}
