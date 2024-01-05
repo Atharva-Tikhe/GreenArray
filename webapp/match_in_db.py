@@ -13,9 +13,10 @@ conn = mysql.connect(host='localhost', user = 'root', passwd = os.getenv('PASS')
 curs = conn.cursor(buffered=True)
 
 class MatchWithDb:
-    def __init__(self, reference, new_file):
+    def __init__(self, reference, new_file, gender):
         self.new_file = new_file
         self.reference = reference
+        self.gender = gender
         self.new_df = pd.read_csv(self.new_file, sep='\t', header=2)
         self.ref_df = pd.read_csv(reference, sep='\t')
         self.preprocess_new_df()
@@ -25,6 +26,10 @@ class MatchWithDb:
         self.new_df.insert(allow_duplicates=True, loc = 13, value = 0, column = 'allele_frequency_%_corrected')
         self.new_df.insert(allow_duplicates=True, loc = 14, value = 0, column = 'zygosity')
         self.new_df.insert(allow_duplicates=True, loc = 15, value = 1, column = 'entry_count')
+        if self.gender == 'M':
+            self.new_df.insert(len(self.new_df.columns) - 1, 'gender', value= 'M')
+        else:
+            self.new_df.insert(len(self.new_df.columns) - 1, 'gender', value= 'F')
 
         corr_freq = self.new_df.loc[:, ['allele_frequency_%']]
 
@@ -54,7 +59,14 @@ class MatchWithDb:
         df_indel['zygosity'] = zygosity
         self.new_df.update(df_indel)
 
-        self.new_df.to_csv(f'webapp/samples/processed_{self.new_file.split("/")[-1]}', sep='\t', index = False)
+
+        if self.gender == 'M':
+            g6pd_mut_indices = self.new_df[self.new_df['gene'] == 'G6PD']
+            g6pd_mut_indices['zygosity'] = 'hemizygous'
+            print(g6pd_mut_indices)
+            self.new_df.update(g6pd_mut_indices)
+
+        self.new_df.to_csv(f'assets/processed/{self.new_file.split("/")[-1]}', sep='\t', index=False)
 
 
     def process_dataframes(self):
@@ -83,4 +95,9 @@ class MatchWithDb:
         engine = create_engine(f"mysql+mysqlconnector://root:{os.getenv('PASS')}@localhost/nbs")
         result.to_sql('variants', engine, 'nbs', if_exists='replace')
 
+
+
+# Example of object definition -
+# obj = MatchWithDb('webapp/processed_56878_v1-full_wc.tsv', 'file-automation/inputs/57000_v1-full.tsv', 'M')
+        
 
