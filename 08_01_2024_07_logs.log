@@ -1,0 +1,11 @@
+2024-01-08 07:22:22,146 Processing sample matrix: ./assets/sample-matrix.tsv
+2024-01-08 07:22:22,165 package: mysql.connector.plugins
+2024-01-08 07:22:22,165 plugin_name: caching_sha2_password
+2024-01-08 07:22:22,165 AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2024-01-08 07:22:22,639 57549_v1-full.tsv processed
+2024-01-08 07:22:23,100 57385_v1-full.tsv processed
+2024-01-08 07:22:23,551 57474_v1-full.tsv processed
+2024-01-08 07:22:23,997 57380_v1-full.tsv processed
+2024-01-08 07:22:24,434 57264_v1-full.tsv processed
+2024-01-08 07:22:24,869 57265_v1-full.tsv processed
+2024-01-08 07:22:25,335 57000_v1-full.tsv processed
